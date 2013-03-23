@@ -1,0 +1,4 @@
+<library path="lib/libastarplanner">
+  <class name="tue_astar_planner_3d/AStarPlannerROS" type="AStarPlannerROS" base_class_type="tue_nav_core::TueBaseGlobalPlanner">
+  </class>
+</library>
