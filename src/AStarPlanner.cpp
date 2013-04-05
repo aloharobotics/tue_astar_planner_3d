@@ -43,10 +43,10 @@ double AStarPlanner::getCost(int x, int y) {
     /// for the A* search to yield the optimal solution cost > 0
     /// thus set the cost here a little bit under the cost of an obstacle
     /// this biases solutions towards known space however! (and it is really ugly)
-    if (cost == Map3DCostValues::NO_INFORMATION) {
-        new_cost = Map3DCostValues::INSCRIBED_INFLATED_OBSTACLE - 0.01;
+    if (cost == Map3DCostValues::get_NO_INFORMATION()) {
+        new_cost = Map3DCostValues::get_INSCRIBED_INFLATED_OBSTACLE() - 0.01;
     }
-    else if (cost < Map3DCostValues::INSCRIBED_INFLATED_OBSTACLE ) {
+    else if (cost < Map3DCostValues::get_INSCRIBED_INFLATED_OBSTACLE()) {
         new_cost = cost;
     }
     //printf("k = %d, cost = %f\n", k, new_cost);

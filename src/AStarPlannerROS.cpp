@@ -226,7 +226,7 @@ bool AStarPlannerROS::getPlan(const geometry_msgs::PoseStamped& start, const geo
 	}
 
     double goal_cell_cost = map_->getCost(mx_goal, my_goal);
-    if (goal_cell_cost >= Map3DCostValues::INSCRIBED_INFLATED_OBSTACLE) {
+    if (goal_cell_cost >= Map3DCostValues::get_INSCRIBED_INFLATED_OBSTACLE()) {
 		ROS_WARN("The goal sent to the planner is in an (inflated) obstacle.");
         return false;
 	}
