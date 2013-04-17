@@ -44,7 +44,9 @@ double AStarPlanner::getCost(int x, int y) {
     /// thus set the cost here a little bit under the cost of an obstacle
     /// this biases solutions towards known space however! (and it is really ugly)
     if (cost == Map3DCostValues::get_NO_INFORMATION()) {
-        new_cost = Map3DCostValues::get_INSCRIBED_INFLATED_OBSTACLE() - 0.01;
+        //new_cost = Map3DCostValues::get_INSCRIBED_INFLATED_OBSTACLE() - 0.01;
+        //new_cost = Map3DCostValues::get_UNKNOWN();
+        new_cost = Map3DCostValues::get_FREE_SPACE();
     }
     else if (cost < Map3DCostValues::get_INSCRIBED_INFLATED_OBSTACLE()) {
         new_cost = cost;
@@ -83,11 +85,11 @@ bool AStarPlanner::plan(int mx_start, int my_start, int mx_goal, int my_goal, st
     /// - initialize all cells in visited_map to false
     /// - determine minimum cell cost in cost map
     /// this cost will determine how the heuristic cost relates to the cost of traversing a cell!    
-    double min_cell_cost = 0.1; //DBL_MAX;
+    double min_cell_cost = DBL_MAX; // 0.2
     for(unsigned int x = 1; x < width_ - 1; ++x) {
         for(unsigned int y = 1; y < height_ - 1; ++y) {
             visited_map_[x][y] = DBL_MAX;
-            //min_cell_cost = min(getCost(x, y), min_cell_cost);
+            min_cell_cost = min(getCost(x, y), min_cell_cost);
         }
     }
 

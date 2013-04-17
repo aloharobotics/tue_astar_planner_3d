@@ -225,7 +225,7 @@ bool AStarPlannerROS::getPlan(const geometry_msgs::PoseStamped& start, const geo
         return false;
 	}
 
-    double goal_cell_cost = map_->getCost(mx_goal, my_goal);
+    double goal_cell_cost = map_->getDistanceCost(mx_goal, my_goal);
     if (goal_cell_cost >= Map3DCostValues::get_INSCRIBED_INFLATED_OBSTACLE()) {
 		ROS_WARN("The goal sent to the planner is in an (inflated) obstacle.");
         return false;
@@ -250,7 +250,7 @@ bool AStarPlannerROS::getPlan(const geometry_msgs::PoseStamped& start, const geo
 	printf("resize: %f sec.\n", (t_end.tv_sec - t_start.tv_sec) + double(t_end.tv_nsec - t_start.tv_nsec) / 1e9);
 #endif
 
-    planner_->setCostmap(map_->getCostmap());
+    planner_->setCostmap(map_->getDistanceCostmap());
 
 	std::vector<int> plan_xs;
 	std::vector<int> plan_ys;
