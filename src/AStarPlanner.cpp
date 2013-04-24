@@ -46,10 +46,11 @@ double AStarPlanner::getCost(int x, int y) {
     if (cost == Map3DCostValues::get_NO_INFORMATION()) {
         //new_cost = Map3DCostValues::get_INSCRIBED_INFLATED_OBSTACLE() - 0.01;
         //new_cost = Map3DCostValues::get_UNKNOWN();
-        new_cost = Map3DCostValues::get_FREE_SPACE();
+        new_cost = 1/(1-Map3DCostValues::get_FREE_SPACE());
     }
     else if (cost < Map3DCostValues::get_INSCRIBED_INFLATED_OBSTACLE()) {
-        new_cost = cost;
+        //new_cost = cost;
+        new_cost = 1/(1-cost);
     }
     //printf("k = %d, cost = %f\n", k, new_cost);
     return new_cost;
